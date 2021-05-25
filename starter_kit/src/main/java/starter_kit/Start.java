@@ -15,7 +15,7 @@ public class Start {
 	  public CommandLineRunner demo(H2PhoneStorage storage) {
 	    return (args) -> {
 	      // save a few H2PhoneNumbers
-	    	storage.save(new H2PhoneNumber("9182734"));
+	    	storage.save(new H2PhoneNumber("918273"));
 	    	storage.save(new H2PhoneNumber("123848"));
 	    	storage.save(new H2PhoneNumber("8139123"));
 	    	storage.save(new H2PhoneNumber("39484982"));
