@@ -10,20 +10,19 @@ import javax.persistence.ManyToOne;
 @Entity
 public class H2PhoneNumber {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	private String phoneNumber;
 	
-//	@ManyToOne
-//	@JoinColumn(name = "userid")
-//	private long userid;
+	private int userid;
 	
 	H2PhoneNumber(){
 		
 	}
 	
-	public H2PhoneNumber(String num) {
+	public H2PhoneNumber(String num, int userid) {
 		this.phoneNumber = num;
+		this.userid = userid;
 	}
 	
 	public String getPhoneNumber() {

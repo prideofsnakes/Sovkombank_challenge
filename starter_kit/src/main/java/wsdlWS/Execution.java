@@ -11,10 +11,13 @@ import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import starter_kit.Start;
+
 @SpringBootApplication
 public class Execution {
 	public static void main(String[] args) {
-//		SpringApplication.run(Execution.class, args);
+		Start.main(args);
+		SpringApplication.run(Execution.class, args);
 		//test request
 //		String content = "<x:Envelope xmlns:x=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:gen=\"http://hilariousstartups.ru/soap/gen\">\r\n"
 //				+ "    <x:Header/>\r\n"

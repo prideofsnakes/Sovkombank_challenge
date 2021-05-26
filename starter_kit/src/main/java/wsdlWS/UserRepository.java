@@ -12,13 +12,20 @@ import org.springframework.util.Assert;
 
 import ru.hilariousstartups.soap.gen.Gender;
 import ru.hilariousstartups.soap.gen.User;
+import starter_kit.H2PhoneStorage;
 
 @Component
 public class UserRepository {
-	private static final List<User> users = new ArrayList<>();
-
+//	private static final List<User> users = new ArrayList<>();
+	private H2PhoneStorage storage;
+	UserRepository(H2PhoneStorage storage) {
+		this.storage = storage;
+	}
 	@PostConstruct
-	public void initData() {
+	public void initData(H2PhoneStorage st) {
+		
+		storage = st;
+		System.out.println("Storage size: "+storage.count());
 		User user = new User();
 		user.setFirstName("Vasya");
 		user.setGender(Gender.MALE);
@@ -34,13 +41,14 @@ public class UserRepository {
 		user3.setGender(Gender.FEMALE);
 		user3.setLastName("Sokolova");
 		
-		users.add(user);
-		users.add(user2);
-		users.add(user3);
+//		users.add(user);
+//		users.add(user2);
+//		users.add(user3);
 	}
 	
 	
 	public User findUser(int i) {
-		return users.get(i);
+//		return users.get(i);
+		return null;
 	}
 }
