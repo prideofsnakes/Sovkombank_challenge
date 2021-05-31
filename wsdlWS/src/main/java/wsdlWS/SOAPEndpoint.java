@@ -17,7 +17,7 @@ import ru.hilariousstartups.soap.gen.User;
 @CrossOrigin(origins = "http://localhost:8090")
 public class SOAPEndpoint {
 	private static final String NAMESPACE_URI = "http://hilariousstartups.ru/soap/gen";
-	//
+	
 	private H2Repository userRepository;
 
 	@Autowired
