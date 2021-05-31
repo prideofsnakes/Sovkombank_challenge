@@ -36,7 +36,7 @@ public class SpringConfiguration {
 		@Bean(name = "users")
 		public SimpleWsdl11Definition defaultWsdl11Definition() {
 			SimpleWsdl11Definition wsdl11Definition = new SimpleWsdl11Definition();
-			wsdl11Definition.setWsdl(new PathResource("").createRelative("soapService.wsdl"));
+			wsdl11Definition.setWsdl(new PathResource("").createRelative("./soapService.wsdl"));
 			return wsdl11Definition;
 		}
 }
