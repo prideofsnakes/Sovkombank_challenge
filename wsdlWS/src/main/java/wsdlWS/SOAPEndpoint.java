@@ -16,7 +16,7 @@ import ru.hilariousstartups.soap.gen.GetUserResponse;
 import ru.hilariousstartups.soap.gen.User;
 
 @Endpoint
-@CrossOrigin(origins = "http://localhost:8090")
+//@CrossOrigin(origins = "http://localhost:8080")
 public class SOAPEndpoint {
 	private static final String NAMESPACE_URI = "http://hilariousstartups.ru/soap/gen";
 	
