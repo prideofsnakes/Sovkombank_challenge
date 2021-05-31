@@ -42,6 +42,6 @@ public class H2User extends User{
 	 }
 	 
 	 public String getSex() {
-		 return sex;
+		 return this.sex;
 	 }
 }

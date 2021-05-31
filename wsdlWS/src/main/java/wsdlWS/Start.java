@@ -46,7 +46,6 @@ public class Start {
 			    System.out.println("H2User found with findById(1L):");
 			    System.out.println("--------------------------------");
 			    System.out.println(H2User.getFirstName());
-			    System.out.println(H2User.getSex());
 			    System.out.println("");
 
 	    };

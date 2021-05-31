@@ -1,11 +1,5 @@
 package wsdlWS;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import javax.annotation.PostConstruct;
-import javax.inject.Inject;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -36,12 +30,12 @@ public class SOAPEndpoint {
 	public GetUserResponse getUser(@RequestPayload GetUserRequest request) {
 		GetUserResponse response = new GetUserResponse();
 		System.out.println("UR length "+userRepository.count());
-//		H2User h2 = userRepository.findById((long)request.getUserId());
-//		User user = new User();
-//		user.setFirstName(h2.getFirstName());
-//		user.setLastName(h2.getLastName());
-//		user.setGender(h2.getGender());
-		response.setUser(userRepository.findById((long)request.getUserId()));
+		H2User h2 = userRepository.findById((long)request.getUserId());
+		User user = new User();
+		user.setFirstName(h2.getFirstName());
+		user.setLastName(h2.getLastName());
+		user.setGender((h2.getSex().equals("M")) ? Gender.MALE : Gender.FEMALE);
+		response.setUser(user);
 		if (!response.getUser().equals(null)) System.out.println("Return User "+response.getUser().getFirstName());
 		return response;
 	}
