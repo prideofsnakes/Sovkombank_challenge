@@ -12,12 +12,14 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
+import h2db.H2Repository;
+import h2db.H2User;
 import ru.hilariousstartups.soap.gen.Gender;
 
 
 @SpringBootApplication
-//@ComponentScan("h2db")
-//@EntityScan("wsdlWS")
+@ComponentScan("h2db")
+@EntityScan("h2db")
 public class Start {
 	
 	public static void main(String[] args) {

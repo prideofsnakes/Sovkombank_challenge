@@ -8,6 +8,8 @@ import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
+import h2db.H2Repository;
+import h2db.H2User;
 import ru.hilariousstartups.soap.gen.Gender;
 import ru.hilariousstartups.soap.gen.GetUserRequest;
 import ru.hilariousstartups.soap.gen.GetUserResponse;

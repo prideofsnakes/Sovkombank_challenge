@@ -18,8 +18,8 @@ import ru.hilariousstartups.soap.gen.Gender;
 
 //@EnableAutoConfiguration
 //@EnableWs
-//@EnableJpaRepositories
-//@Configuration
+@EnableJpaRepositories
+@Configuration
 public class SpringConfiguration {
 
 //	  
