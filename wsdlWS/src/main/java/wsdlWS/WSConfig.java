@@ -1,5 +1,6 @@
 package wsdlWS;
 
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -9,6 +10,8 @@ import org.springframework.ws.config.annotation.EnableWs;
 import org.springframework.ws.transport.http.MessageDispatcherServlet;
 import org.springframework.ws.wsdl.wsdl11.DefaultWsdl11Definition;
 import org.springframework.ws.wsdl.wsdl11.SimpleWsdl11Definition;
+
+import ru.hilariousstartups.soap.gen.Gender;
 
 @EnableWs
 @Configuration
@@ -27,5 +30,5 @@ public class WSConfig {
 		wsdl11Definition.setWsdl(new PathResource("").createRelative("soapService.wsdl"));
 		return wsdl11Definition;
 	}
-
+	
 }
