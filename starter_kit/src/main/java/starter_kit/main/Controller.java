@@ -1,5 +1,7 @@
 package starter_kit.main;
 
+import java.util.Map;
+
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpPost;
@@ -39,9 +41,11 @@ public class Controller {
 		       StringEntity input = new StringEntity(content);
 		       httpPost.setEntity(input);   
 		       HttpResponse response = httpClient.execute(httpPost);
-		       HttpEntity entity = response.getEntity();
-		       String responseString = EntityUtils.toString(entity, "UTF-8");
-		       System.out.println(responseString);
+//		       HttpEntity entity = response.getEntity();
+//		       String responseString = EntityUtils.toString(entity, "UTF-8");
+//		       System.out.println(responseString);
+		       Map<String, String> userCredentials = new SaxParser().parseUser(response);
+		       System.out.println(userCredentials.toString());
 	       }
 	       
 	       catch (Exception e) {
