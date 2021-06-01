@@ -2,7 +2,6 @@ package wsdlWS;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
@@ -20,6 +19,7 @@ import ru.hilariousstartups.soap.gen.User;
 public class SOAPEndpoint {
 	private static final String NAMESPACE_URI = "http://hilariousstartups.ru/soap/gen";
 	
+	@Autowired
 	private H2Repository userRepository;
 
 	@Autowired
