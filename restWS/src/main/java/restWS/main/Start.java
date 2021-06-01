@@ -18,10 +18,19 @@ public class Start {
 	    return (args) -> {
 		        // save a few H2Users
 		    	repository.save(new H2Phone("101", 1));
+		    	repository.save(new H2Phone("101.1", 1));
+		    	repository.save(new H2Phone("101.2", 1));
 		    	repository.save(new H2Phone("102", 2));
+		    	repository.save(new H2Phone("102.2", 2));
+		    	repository.save(new H2Phone("102.3", 2));
+		    	repository.save(new H2Phone("102.4", 2));
 		    	repository.save(new H2Phone("103", 3));
+		    	repository.save(new H2Phone("103.2", 3));
 		    	repository.save(new H2Phone("104", 4));
+		    	repository.save(new H2Phone("104.2", 4));
 		    	repository.save(new H2Phone("105", 5));
+		    	repository.save(new H2Phone("105.2", 5));
+		    	repository.save(new H2Phone("105.3", 5));
 			
 			    // fetch all H2Users
 			    System.out.println("H2Users found with findAll():");
@@ -32,11 +41,8 @@ public class Start {
 			    System.out.println("");
 			
 			    // fetch an individual H2User by ID
-			    H2Phone H2Phone = repository.getById(1L);
-			    System.out.println("H2Phone found with getById(1L):");
+			    System.out.println("H2Phone repository length :"+repository.count());
 			    System.out.println("--------------------------------");
-			    System.out.println(H2Phone.getPhone());
-			    System.out.println("");
 
 	    };
 	  }
