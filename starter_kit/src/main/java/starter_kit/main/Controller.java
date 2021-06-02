@@ -1,6 +1,8 @@
 package starter_kit.main;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.http.HttpEntity;
@@ -17,28 +19,62 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class Controller {
-	private String urlSOAP = "http://localhost:8091/ws/";
-	private String urlREST = "http://localhost:8090/api/v1/phones/";
+	private final String URLSOAP = "http://localhost:8091/ws/";
+	private final String URLREST = "http://localhost:8090/api/v1/phones/";
 	
 	@GetMapping("/user/{id}")
 	public Map<String, Object> getUser(@PathVariable int id) {
+		
 		Map<String, Object> result = new HashMap<String, Object>();
+		List<Thread> threadls = new ArrayList<Thread>();
+		//multithreading
+		try {
+			threadls.add(new Thread(new Runnable() {
+	
+				@Override
+				public void run() {
+					// TODO Auto-generated method stub
+					Map<String, Object> phones = getPhoneREST(id);
+					System.out.println(phones.toString());
+					String[] phoneArr = (String[]) phones.get("phones");
+					if (phoneArr.length > 0) result.put("phone", phoneArr[0]);
+					else result.put("phone", "");
+					System.out.println("Thread REST is over.");
+				}
+				
+			}));
+	
+			threadls.add(new Thread(new Runnable() {
+	
+				@Override
+				public void run() {
+					// TODO Auto-generated method stub
+					Map<String, String> userCredentials = getUserSOAP(id);
+					//is ok case
+					if (userCredentials.containsKey("firstName") && userCredentials.containsKey("lastName")) {
+						result.put("name", userCredentials.get("firstName") + " " + userCredentials.get("lastName"));
+						result.put("code", 0);
+					}
+					else result.put("code", 2);
+					System.out.println("Thread WSDL is over.");
+				}
+				
+			}));
+			for (Thread thread : threadls) {
+				thread.start();
+				System.out.println("Thread #"+threadls.indexOf(thread)+" is started...");
+			}
+			
+			for (Thread thread : threadls) {
+				thread.join();
+				System.out.println("Thread #"+threadls.indexOf(thread)+" has been joined to general thread.");
+			}
 		
-		Map<String, Object> phones = getPhoneREST(id);
-		System.out.println(phones.toString());
-		String[] phoneArr = (String[]) phones.get("phones");
-		if (phoneArr.length > 0) result.put("phone", phoneArr[0]);
-		else result.put("phone", "");
-		
-		Map<String, String> userCredentials = getUserSOAP(id);
-		//is ok case
-		if (userCredentials.containsKey("firstName") && userCredentials.containsKey("lastName")) {
-			result.put("name", userCredentials.get("firstName") + " " + userCredentials.get("lastName"));
-			result.put("code", 0);
-			return result;
 		}
-		//error case
-		result.put("code", 2);
+		
+		catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 		return result;
 	}
 	
@@ -54,7 +90,7 @@ public class Controller {
 	           + "    </x:Body>\r\n"
 	           + "</x:Envelope>";
 	       // Create the POST object and add the parameters
-	       HttpPost httpPost = new HttpPost(urlSOAP);
+	       HttpPost httpPost = new HttpPost(URLSOAP);
 	       httpPost.addHeader("Content-Type", "text/xml; charset=utf-8");
 	       DefaultHttpClient httpClient = new DefaultHttpClient();
 	       
@@ -87,7 +123,7 @@ public class Controller {
 		DefaultHttpClient httpClient = new DefaultHttpClient();
 		try {
 			//get request
-			HttpGet httpGet = new HttpGet(urlREST+id);
+			HttpGet httpGet = new HttpGet(URLREST+id);
 			HttpResponse response = httpClient.execute(httpGet);
 			//parse response
 		       HttpEntity entity = response.getEntity();
