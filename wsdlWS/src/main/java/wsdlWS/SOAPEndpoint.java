@@ -33,12 +33,14 @@ public class SOAPEndpoint {
 		GetUserResponse response = new GetUserResponse();
 		System.out.println("UR length "+userRepository.count());
 		H2User h2 = userRepository.findById((long)request.getUserId());
-		User user = new User();
-		user.setFirstName(h2.getFirstName());
-		user.setLastName(h2.getLastName());
-		user.setGender((h2.getSex().equals("M")) ? Gender.MALE : Gender.FEMALE);
-		response.setUser(user);
-		if (!response.getUser().equals(null)) System.out.println("Return User "+response.getUser().getFirstName());
+		if (!h2.equals(null)) {
+			User user = new User();
+			user.setFirstName(h2.getFirstName());
+			user.setLastName(h2.getLastName());
+			user.setGender((h2.getSex().equals("M")) ? Gender.MALE : Gender.FEMALE);
+			response.setUser(user);
+			System.out.println("Return User "+response.getUser().getFirstName());
+		}
 		return response;
 	}
 	

@@ -28,9 +28,6 @@ public class Start {
 		    	repository.save(new H2Phone("103.2", 3));
 		    	repository.save(new H2Phone("104", 4));
 		    	repository.save(new H2Phone("104.2", 4));
-		    	repository.save(new H2Phone("105", 5));
-		    	repository.save(new H2Phone("105.2", 5));
-		    	repository.save(new H2Phone("105.3", 5));
 			
 			    // fetch all H2Users
 			    System.out.println("H2Users found with findAll():");

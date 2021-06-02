@@ -22,18 +22,15 @@ public class PhoneController {
 		List<String> phones = new ArrayList<String>();
 		Map<String, Object> res = new HashMap<String, Object>();
 		//if userid doesnt exist in h2user-entity -- return empty list
-		if (repo.getAllByuserid(userid).size() < 1) {
-			res.put("phones", phones);
-			return res;
+		if (repo.getAllByuserid(userid).size() > 0) {
+			//get all phones by userid
+			List<H2Phone> h2phones = repo.getAllByuserid(userid);
+			//collect phonenumbers to list
+			for (H2Phone h2phone : h2phones) {
+				System.out.println("Added phone: "+h2phone.getPhone());
+				phones.add(h2phone.getPhone());
+			}
 		}
-		//get all phones by userid
-		List<H2Phone> h2phones = repo.getAllByuserid(userid);
-		//collect phonenumbers to list
-		for (H2Phone h2phone : h2phones) {
-			System.out.println("Added phone: "+h2phone.getPhone());
-			phones.add(h2phone.getPhone());
-		}
-		
 		res.put("phones", phones);
 		return res;
 	}

@@ -11,6 +11,7 @@ import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 public class SaxParser {
+	
 	private HashMap<String, String> userMap = new HashMap<String, String>();
 	
 	public HashMap <String, String> parseUser(HttpResponse response) throws Exception {
@@ -22,7 +23,6 @@ public class SaxParser {
 	    
 	    DefaultHandler handler = new DefaultHandler() {
 	    	
-	    boolean user = false;
 	    boolean firstName = false;
 	    boolean lastName = false;
 	    
@@ -30,9 +30,6 @@ public class SaxParser {
 	                Attributes attributes) throws SAXException {
 	    	
     	
-	        if (qName.equalsIgnoreCase("user")) {
-	        	user = true;
-	        }
 
 	        if (qName.equalsIgnoreCase("ns2:firstName")) {
 	        	firstName = true;
@@ -49,9 +46,6 @@ public class SaxParser {
 	    public void characters(char ch[], int start, int length) throws SAXException {
 
 	    	
-	        if (user) {
-	        	user = false;
-	        }
 
 	        if (firstName) {
 	        	userMap.put("firstName", new String(ch, start, length));
@@ -67,11 +61,6 @@ public class SaxParser {
 	        
 	        
 	    }
-	    
-//	    public void endElement(String uri, String localName,
-//	            String qName) throws SAXException {
-//
-//	        }
 	    
 	    
 	     };
