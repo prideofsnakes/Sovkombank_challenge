@@ -2,7 +2,7 @@ FROM openjdk:11
 ARG STARTER_FILE=starter_kit/target/PhoneNumbers.jar
 ARG WSDL_FILE=wsdlWS/target/wsdlWS-0.0.1-SNAPSHOT.jar
 ARG REST_FILE=restWS/target/restWS-0.0.1-SNAPSHOT.jar
-ARG SCHEMA=/soapService.wsdl
+ARG SCHEMA=/wsdlWS/soapService.wsdl
 COPY ${STARTER_FILE} /home/app/start.jar
 COPY ${WSDL_FILE} /home/app/wsdl.jar
 COPY ${REST_FILE} /home/app/rest.jar
